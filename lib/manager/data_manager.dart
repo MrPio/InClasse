@@ -2,14 +2,9 @@ import 'package:collection/collection.dart';
 import 'package:in_classe/extension_function/int_extensions.dart';
 import 'package:in_classe/manager/account_manager.dart';
 import 'package:in_classe/manager/io_manager.dart';
-import 'package:in_classe/model/edition.dart';
-import 'package:in_classe/model/match.dart';
-import 'package:in_classe/model/player.dart';
-import 'package:in_classe/model/team.dart';
 import 'package:in_classe/model/user.dart';
 
 import '../interfaces/json_serializable.dart';
-import '../model/news.dart';
 import 'database_manager.dart';
 
 enum SaveMode { post, put }
@@ -23,62 +18,24 @@ class DataManager {
 
   static const pageSize = 100;
 
-  final anonymous = User();
-  List<Edition> cachedEditions = [];
-  List<Match> cachedMatches = [];
-  List<Player> cachedPlayers = [];
-  List<Team> cachedTeams = [];
+  final anonymous = User(email: "example@example.com", username: "Anonymous");
   List<User> cachedUsers = [];
-  List<News> cachedNews = [];
 
   Map<Type, List<JSONSerializable>> get caches => {
-        Edition: cachedEditions,
-        Match: cachedMatches,
-        Player: cachedPlayers,
-        Team: cachedTeams,
         User: cachedUsers,
-        News: cachedNews,
       };
 
   Map<Type, int> get cachesTTL => {
-        Edition: 30 * 60,
-        Match: 30 * 60,
-        Player: 30 * 60,
-        Team: 30 * 60,
         User: 30 * 60,
-        News: 15 * 60,
       };
 
   /// The functions used to deserialize cache from disk
   Map<Type, Function()> get cacheDeserializers => {
-        Edition: IOManager().deserializeObjects<Edition>,
-        Match: IOManager().deserializeObjects<Match>,
-        Player: IOManager().deserializeObjects<Player>,
-        Team: IOManager().deserializeObjects<Team>,
         User: IOManager().deserializeObjects<User>,
-        News: IOManager().deserializeObjects<News>,
       };
 
   /// The functions used to fetch cache data from db
-  Map<Type, Future<List<JSONSerializable>> Function()> get cacheSeeders => {
-        Edition: () async =>
-            await DatabaseManager()
-                .getList<Edition>(DatabaseManager.collections[Edition]!, pageSize: 999) ??
-            [],
-        Match: () async =>
-            await DatabaseManager().getList<Match>(DatabaseManager.collections[Match]!, pageSize: 999) ??
-            [],
-        Player: () async =>
-            await DatabaseManager()
-                .getList<Player>(DatabaseManager.collections[Player]!, pageSize: 999) ??
-            [],
-        Team: () async =>
-            await DatabaseManager().getList<Team>(DatabaseManager.collections[Team]!, pageSize: 999) ??
-            [],
-        News: () async =>
-            await DatabaseManager().getList<News>(DatabaseManager.collections[News]!, pageSize: 9999) ??
-            [],
-      };
+  Map<Type, Future<List<JSONSerializable>> Function()> get cacheSeeders => {};
 
   invalidateCache<T>() async => await IOManager().removeCollection(T);
 

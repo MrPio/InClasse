@@ -1,7 +1,9 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:in_classe/view/partial/bottom_bar_icon.dart';
+import 'package:in_classe/view/screen/home/account_screen.dart';
 import 'package:in_classe/view/screen/home/home_screen.dart';
+import 'package:in_classe/view/screen/home/settings_screen.dart';
 import '../constant/measures.dart';
 import '../widget/background.dart';
 
@@ -21,9 +23,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   int _index = 0;
-  final List<_Screen> _screens = [
-    // _Screen(TODO),
-  ];
   late final PageController _pageController;
 
   @override
@@ -39,31 +38,40 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    final _screens = [
+      _Screen(HomeScreen(), name: 'Lezioni', icon: 'news'),
+      _Screen(AccountScreen(), name: 'Account', icon: 'account'),
+      _Screen(SettingsScreen(), name: 'Impostazioni', icon: 'cog'),
+    ];
+
     return Scaffold(
       body: Stack(
-        children: [
+          children: [
           Background(),
 
-          // Body -> current screen
-          SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: Measures.hPadding),
-              child: PageView(
-                controller: _pageController,
-                children: _screens.map((e) => e.screen).toList(),
-              ),
-            ),
+      // Body -> current screen
+      SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: Measures.hPadding),
+          child: PageView(
+            controller: _pageController,
+            children: _screens.map((e) => e.screen).toList(),
           ),
+        ),
+      ),
 
-          // Bottom bar
-          SafeArea(
-            child: Align(
-              alignment: Alignment.bottomCenter,
+      // Bottom bar
+      SafeArea(
+        child: Align(
+          alignment: Alignment.bottomCenter,
+          child: Container(
+            decoration: BoxDecoration(borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(10), topRight: Radius.circular(10)),color: Colors.white.withAlpha(40)),
               child: Padding(
                 padding: const EdgeInsets.symmetric(
                     horizontal: Measures.hPadding, vertical: Measures.vMarginThin),
                 child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: _screens.map((screen) {
                     final i = _screens.indexOf(screen);
                     return BottomBarIcon(
@@ -71,14 +79,16 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                         iconPathOn: '${screen.icon}_on',
                         iconPathOff: '${screen.icon}_off',
                         active: _index == i,
-                        onTap: () => _pageController.animateToPage(i,
-                            duration: Durations.medium3 * pow((_index - i).abs(), 0.7),
-                            curve: Curves.easeOutCubic));
+                        onTap: () =>
+                            _pageController.animateToPage(i,
+                                duration: Durations.medium3 * pow((_index - i).abs(), 0.7),
+                                curve: Curves.easeOutCubic));
                   }).toList(),
                 ),
               ),
             ),
           ),
+        ),
         ],
       ),
     );

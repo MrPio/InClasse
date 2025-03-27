@@ -1,31 +1,15 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:in_classe/model/edition.dart';
-import 'package:in_classe/model/match.dart';
-import 'package:in_classe/model/player.dart';
-import 'package:in_classe/model/team.dart';
 import 'package:in_classe/model/user.dart';
-
-import '../model/news.dart';
 
 abstract class JSONSerializable {
   /// Used to retrieve the Type object relative to a `T` generic
   static List<Type> implementations = [
-    Edition,
-    Match,
-    Player,
-    Team,
     User,
-    News,
   ];
 
   /// Used to retrieve the class json constructor object relative to a `T` generic
   static Map<Type, Function> modelFactories = {
-    Edition: Edition.fromJson,
-    Match: Match.fromJson,
-    Player: Player.fromJson,
-    Team: Team.fromJson,
     User: User.fromJson,
-    News: News.fromJson,
   };
 
   factory JSONSerializable.fromJson(Map<String, dynamic> json) {

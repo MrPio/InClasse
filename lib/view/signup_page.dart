@@ -13,7 +13,6 @@ import 'package:in_classe/view/partial/input_field.dart';
 import 'package:in_classe/view/partial/line.dart';
 
 import '../manager/data_manager.dart';
-import '../model/team.dart';
 import '../widget/background.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -26,9 +25,6 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> with Loadable {
   late final TextEditingController _usernameController, _emailController, _passwordController;
   bool showTeams = false;
-  Team? selectedTeam;
-
-  List<Team> get _teams => DataManager().cachedTeams;
 
   @override
   void initState() {
@@ -60,7 +56,7 @@ class _SignUpPageState extends State<SignUpPage> with Loadable {
                   firstColor: Palette.onBackground,
                   secondColor: Palette.textGradient,
                 ),
-                SizedBox(height: Measures.hMarginMed),
+                SizedBox(height: Measures.vMarginMed),
 
                 // E-mail
                 InputField(
@@ -94,22 +90,18 @@ class _SignUpPageState extends State<SignUpPage> with Loadable {
                   backgroundColor: Palette.onBackground,
                   textColor: Palette.buttonGradient,
                   isEnabled: true,
-                  onPressed: () {
-                    setState(() {
-                      showTeams = true;
-                    });
-                  },
+                  onPressed: () {},
                 ),
                 SizedBox(height: Measures.hMarginMed),
                 Line(),
 
                 // Accedi con Google
-                SizedBox(height: Measures.hMarginMed),
+                SizedBox(height: Measures.vMarginSmall),
                 BigButton(
-                  'Accedi con Google',
+                  'Registrati con Google',
                   backgroundColor: Palette.onBackground,
                   textColor: Palette.background,
-                  icon: Image.asset('assets/images/logos/google.png', width: 30, height: 30),
+                  icon: Image.asset('assets/images/google.png', width: 30, height: 30),
                   onPressed: () {
                     print('premuto');
                   },
@@ -118,13 +110,21 @@ class _SignUpPageState extends State<SignUpPage> with Loadable {
                 // Accedi con Apple
                 SizedBox(height: Measures.hMarginMed),
                 BigButton(
-                  'Accedi con Apple',
+                  'Registrati con Apple',
                   backgroundColor: Palette.background,
                   textColor: Palette.onBackground,
                   //TODO l'immagine va presa quando ci si iscrive all'Apple Developer
-                  icon: Image.asset('assets/images/logos/apple.png', width: 30, height: 30),
+                  icon: Image.asset('assets/images/apple.png', width: 26, height: 26),
                   onPressed: () {
                     print('premuto');
+                  },
+                ),
+
+                SizedBox(height: Measures.vMarginSmall),
+                BigButton(
+                  'Hai già un account?',
+                  onPressed: () {
+                    context.goto('/login', pop: true);
                   },
                 ),
               ],

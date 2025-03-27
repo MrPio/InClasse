@@ -1,8 +1,4 @@
-import 'package:in_classe/database/seeders/edition_seeder.dart';
-import 'package:in_classe/database/seeders/match_seeder.dart';
-import 'package:in_classe/database/seeders/news_seeder.dart';
-import 'package:in_classe/database/seeders/player_seeder.dart';
-import 'package:in_classe/database/seeders/team_seeder.dart';
+import 'package:in_classe/database/seeders/corso_seeder.dart';
 import 'package:in_classe/interfaces/json_serializable.dart';
 
 import '../manager/data_manager.dart';
@@ -14,13 +10,7 @@ abstract class Seeder<T> {
   get deleteCollection => DatabaseManager().deleteCollection<T>;
 }
 
-List<Seeder> seeders = [
-  EditionSeeder(),
-  TeamSeeder(),
-  MatchSeeder(),
-  PlayerSeeder(),
-  NewsSeeder(),
-];
+List<Seeder> seeders = [CorsoSeeder()];
 
 /// Seed the database. Clear existing instances if [fresh].
 seedDatabase({bool fresh = true}) async {

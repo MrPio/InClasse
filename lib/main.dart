@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:in_classe/view/first_page.dart';
 import 'package:in_classe/view/home_page.dart';
-import 'package:in_classe/view/screen/account_page.dart';
 import 'package:in_classe/view/signin_page.dart';
 import 'package:in_classe/view/signup_page.dart';
 import 'package:tuple/tuple.dart';
@@ -26,11 +25,11 @@ class MyApp extends StatelessWidget {
         .copyWith(systemNavigationBarColor: Colors.transparent, statusBarColor: Colors.transparent));
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
     return CupertinoApp(
-      title: 'Torneo dei quartieri',
+      title: 'Tra Le Righe',
       onGenerateRoute: (settings) {
         final Map<String, Tuple2<Offset, Widget>> transitions = {
           '/signup': const Tuple2(Offset(1.0, 0.0), SignUpPage()),
-          '/signin': const Tuple2(Offset(-1.0, 0.0), SignInPage()),
+          '/login': const Tuple2(Offset(-1.0, 0.0), SignInPage()),
         };
         if (transitions.containsKey(settings.name)) {
           return PageRouteBuilder(
@@ -50,8 +49,8 @@ class MyApp extends StatelessWidget {
       routes: <String, WidgetBuilder>{
         '/': (context) => const FirstPage(),
         '/home': (context) => const HomePage(),
-        '/account': (context) => const AccountPage(),
         '/login': (context) => const SignInPage(),
+        '/signup': (context) => const SignUpPage(),
       },
     );
   }

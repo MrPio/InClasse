@@ -26,11 +26,11 @@ class BottomBarIcon extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            (active ? iconPathOn : iconPathOff).toIcon(height: 29),
+            (active ? iconPathOn : iconPathOff).toIcon(height: 36),
             const SizedBox(height: 2),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
-              child: Text(title, style: Fonts.regular(size: 11)),
+              child: Text(title, style: Fonts.regular(size: 13)),
             )
           ],
         ),

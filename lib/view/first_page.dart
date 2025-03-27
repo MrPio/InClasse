@@ -8,12 +8,9 @@ import 'package:in_classe/widget/background.dart';
 
 import '../constant/measures.dart';
 import '../constant/palette.dart';
-import '../database/database_seeder.dart';
 import '../firebase_options.dart';
 import '../manager/account_manager.dart';
-import '../manager/data_manager.dart';
 import '../manager/io_manager.dart';
-import '../model/player.dart';
 
 class FirstPage extends StatefulWidget {
   const FirstPage({super.key});
@@ -47,10 +44,10 @@ class _FirstPageState extends State<FirstPage> {
         // ⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️⚠️
 
         // Autologin
-        if (await AccountManager().cacheSignIn()) {
-          await DataManager().fetchData();
-          context.goto('/home', pop: true);
-        }
+        // if (await AccountManager().cacheSignIn()) {
+        //   await DataManager().fetchData();
+        //   context.goto('/home', pop: true);
+        // }
         FlutterNativeSplash.remove();
       });
     }
@@ -75,18 +72,18 @@ class _FirstPageState extends State<FirstPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
                   BiColorText(
-                    firstText: 'Una',
-                    secondText: 'città',
+                    firstText: 'Una ',
+                    secondText: 'lezione',
                     secondColor: Palette.firstTitle,
                   ),
                   BiColorText(
-                    firstText: 'una',
-                    secondText: 'storia',
+                    firstText: 'una ',
+                    secondText: 'domanda',
                     secondColor: Palette.secondTitle,
                   ),
                   BiColorText(
-                    firstText: 'una',
-                    secondText: 'corona',
+                    firstText: 'una ',
+                    secondText: 'risposta',
                     secondColor: Palette.thirdTitle,
                   ),
                 ],
@@ -100,7 +97,7 @@ class _FirstPageState extends State<FirstPage> {
                     textColor: Palette.buttonGradient,
                     backgroundColor: Palette.onBackground,
                     onPressed: () {
-                      Navigator.pushNamed(context, '/login');
+                      context.goto('/login', pop: true);
                     },
                   ),
                   SizedBox(height: Measures.hMarginMed),
@@ -109,7 +106,7 @@ class _FirstPageState extends State<FirstPage> {
                     backgroundColor: Colors.transparent,
                     hasBorder: true,
                     onPressed: () {
-                      Navigator.pushNamed(context, '/signup');
+                      context.goto('/signup', pop: true);
                     },
                   ),
                   const SizedBox(height: Measures.hMarginBig),

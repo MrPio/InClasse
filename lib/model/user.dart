@@ -1,26 +1,30 @@
-import 'package:json_annotation/json_annotation.dart';
 import 'package:in_classe/interfaces/json_serializable.dart';
-import 'package:in_classe/model/person.dart';
-import 'package:in_classe/model/team.dart';
+import 'package:json_annotation/json_annotation.dart';
 
-part 'generated/user.g.dart';
+part 'user.g.dart';
 
 @JsonSerializable()
-class User extends Person implements JSONSerializable {
-  String? favTeamUID;
-  String email, username;
+class User implements JSONSerializable {
+  final String nome, cognome, corso, email, username;
 
   User(
-      {super.name,
-      super.surname,
-      super.dateBirth,
-      super.avatar,
-      super.regTimestamp,
-      this.favTeamUID,
-      this.email = 'default@email.com',
-      this.username = 'Guest'});
+      {required this.email,
+      required this.username,
+      this.nome = 'Mario',
+      this.cognome = 'Rossi',
+      this.corso = "Ingegneria Informatica e dell'Automazione"});
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 
   Map<String, dynamic> toJSON() => _$UserToJson(this);
+
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  late final String? uid;
+
+  @override
+  late final int? regTimestamp;
+
+  @override
+  fetchData() {}
 }

@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:in_classe/constant/fonts.dart';
@@ -128,40 +129,65 @@ extension ContextExtensions on BuildContext {
   }
 
   // TODO: convert to a more iOS style snackbar, maybe like this https://github.com/zaniluca/SwiftUISnackbar
-  snackbar(
-    String message, {
-    Color backgroundColor = Palette.primary,
-    double bottomMargin = Measures.vMarginMed,
-    Function()? undoCallback,
-  }) async =>
-      await ScaffoldMessenger.of(this)
-          .showSnackBar(
-            SnackBar(
-              duration: undoCallback == null ? const Duration(seconds: 3) : const Duration(seconds: 5),
-              padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
-              margin: EdgeInsets.only(
-                  left: Measures.hPadding, right: Measures.hPadding, bottom: bottomMargin),
-              shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20))),
-              behavior: SnackBarBehavior.floating,
-              backgroundColor: backgroundColor,
-              elevation: 0,
-              content: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(child: Text(message, style: Fonts.regular())),
-                  if (undoCallback != null)
-                    TextButton(
-                      onPressed: () {
-                        ScaffoldMessenger.of(this).clearSnackBars();
-                        undoCallback();
-                      },
-                      child: Text('ANNULLA', style: Fonts.bold(size: 15)),
-                    )
-                ],
-              ),
+  Future<void> snackbar(
+      String message, {
+        Color backgroundColor = CupertinoColors.transparent,
+        double bottomMargin = 50.0,
+        VoidCallback? undoCallback,
+      }) async {
+    final overlay = Overlay.of(this);
+    late OverlayEntry overlayEntry;
+
+    overlayEntry = OverlayEntry(
+      builder: (context) => Positioned(
+        left: 20,
+        right: 20,
+        bottom: bottomMargin,
+        child: CupertinoPopupSurface(
+          isSurfacePainted: false,
+          child: Container(
+            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+            decoration: BoxDecoration(
+              color: backgroundColor,
+              borderRadius: BorderRadius.circular(20),
             ),
-          )
-          .closed;
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Text(
+                    message,
+                    style: Fonts.regular(size: 16),
+                  ),
+                ),
+                if (undoCallback != null)
+                  CupertinoButton(
+                    padding: EdgeInsets.zero,
+                    child: Text(
+                      'ANNULLA',
+                      style: CupertinoTheme.of(context)
+                          .textTheme
+                          .actionTextStyle
+                          .copyWith(fontWeight: FontWeight.bold, fontSize: 15),
+                    ),
+                    onPressed: () {
+                      overlayEntry.remove();
+                      undoCallback();
+                    },
+                  )
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+
+    overlay.insert(overlayEntry);
+
+    await Future.delayed(Duration(seconds: undoCallback == null ? 3 : 5));
+    overlayEntry.remove();
+  }
+
 
   /// Shortcut for pushing a new screen with [args].
   ///

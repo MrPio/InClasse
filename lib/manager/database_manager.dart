@@ -1,14 +1,9 @@
 import 'dart:collection';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:in_classe/model/edition.dart';
-import 'package:in_classe/model/match.dart';
-import 'package:in_classe/model/player.dart';
-import 'package:in_classe/model/team.dart';
 import 'package:in_classe/model/user.dart';
 
 import '../interfaces/json_serializable.dart';
-import '../model/news.dart';
 
 class DatabaseManager {
   static final DatabaseManager _instance = DatabaseManager._();
@@ -18,12 +13,7 @@ class DatabaseManager {
   DatabaseManager._();
 
   static const collections = {
-    Edition: 'editions/',
-    Match: 'matches/',
-    Player: 'players/',
-    Team: 'teams/',
     User: 'users/',
-    News: 'news/',
   };
   final FirebaseFirestore _database = FirebaseFirestore.instance;
   var paginateKeys = HashMap<String, String?>();

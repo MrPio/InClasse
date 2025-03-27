@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:in_classe/constant/fonts.dart';
+import 'package:in_classe/constant/measures.dart';
 import 'package:in_classe/constant/palette.dart';
 
 class BigButton extends StatelessWidget {
@@ -48,6 +49,7 @@ class BigButton extends StatelessWidget {
               children: [
                 if (icon != null) ...[
                   icon!,
+                  SizedBox(width: Measures.hMarginSmall)
                 ],
                 textColor is List
                     ? ShaderMask(

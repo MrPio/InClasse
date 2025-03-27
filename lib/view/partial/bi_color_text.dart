@@ -7,6 +7,7 @@ class BiColorText extends StatelessWidget {
   final String secondText;
   final dynamic firstColor;
   final dynamic secondColor;
+  final TextAlign textAlign;
 
   /// Displays a text made of two parts with different colors, on the same line.
   const BiColorText({
@@ -15,33 +16,29 @@ class BiColorText extends StatelessWidget {
     this.secondText = "",
     this.firstColor = Palette.onBackground,
     this.secondColor = Palette.primary,
+    this.textAlign = TextAlign.center,
   });
 
   @override
   Widget build(BuildContext context) {
     return RichText(
-      textAlign: TextAlign.center,
+      textAlign: textAlign,
       text: TextSpan(
         children: [
           firstColor is List
               ? WidgetSpan(
-              child: ShaderMask(
-                shaderCallback: (bounds) => LinearGradient(colors: firstColor).createShader(bounds),
-                child: Text(firstText, style: Fonts.black()),
-              )
-          )
-              :
-          TextSpan(text: firstText, style: Fonts.black(color: firstColor)),
-
+                  child: ShaderMask(
+                  shaderCallback: (bounds) => LinearGradient(colors: firstColor).createShader(bounds),
+                  child: Text(firstText, style: Fonts.black()),
+                ))
+              : TextSpan(text: firstText, style: Fonts.black(color: firstColor)),
           secondColor is List
               ? WidgetSpan(
-              child: ShaderMask(
-                shaderCallback: (bounds) => LinearGradient(colors: secondColor).createShader(bounds),
-                child: Text(secondText, style: Fonts.black()),
-              )
-          )
-              :
-          TextSpan(text: secondText, style: Fonts.black(color: secondColor)),
+                  child: ShaderMask(
+                  shaderCallback: (bounds) => LinearGradient(colors: secondColor).createShader(bounds),
+                  child: Transform.translate(offset: Offset(0, 4),child: Text(secondText, style: Fonts.black())),
+                ))
+              : TextSpan(text: secondText, style: Fonts.black(color: secondColor)),
         ],
       ),
     );
