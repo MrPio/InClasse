@@ -143,8 +143,8 @@ class _SignInPageState extends State<SignInPage> with Loadable {
           } else if (status == SignInStatus.userNotInDatabase) {
             context.snackbar('L\'account non è più esistente!', backgroundColor: Palette.error);
           } else if (status == SignInStatus.success) {
-            context.snackbar('Bentornato ${AccountManager().user.username}!',
-                backgroundColor: Palette.background);
+            // context.snackbar('Bentornato ${AccountManager().user.username}!',
+            //     backgroundColor: Palette.background);
             await gotoHome();
           }
         }

@@ -9,6 +9,7 @@ import 'package:in_classe/view/signup_page.dart';
 import 'package:tuple/tuple.dart';
 
 import 'firebase_options.dart';
+import 'lezione_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized(); // Assicurati che il binding sia inizializzato
@@ -49,6 +50,7 @@ class MyApp extends StatelessWidget {
       routes: <String, WidgetBuilder>{
         '/': (context) => const FirstPage(),
         '/home': (context) => const HomePage(),
+        '/lezione': (context) => const LezionePage(),
         '/login': (context) => const SignInPage(),
         '/signup': (context) => const SignUpPage(),
       },

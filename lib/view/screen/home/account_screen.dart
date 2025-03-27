@@ -10,6 +10,6 @@ class AccountScreen extends StatefulWidget {
 class _AccountScreenState extends State<AccountScreen> {
   @override
   Widget build(BuildContext context) {
-    return Placeholder();
+    return Container();
   }
 }

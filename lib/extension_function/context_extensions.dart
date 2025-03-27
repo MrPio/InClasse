@@ -132,7 +132,7 @@ extension ContextExtensions on BuildContext {
   Future<void> snackbar(
       String message, {
         Color backgroundColor = CupertinoColors.transparent,
-        double bottomMargin = 50.0,
+        double bottomMargin = 130.0,
         VoidCallback? undoCallback,
       }) async {
     final overlay = Overlay.of(this);

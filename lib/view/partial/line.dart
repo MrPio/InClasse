@@ -18,13 +18,11 @@ class Line extends StatelessWidget {
             color: color,
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.only(left: 5.0, right: 5.0),
-          child: Text(
-            text,
-            style: Fonts.light(color: color),
+        if (text.length > 0)
+          Padding(
+            padding: const EdgeInsets.only(left: 5.0, right: 5.0),
+            child: Text(text, style: Fonts.regular(color: color)),
           ),
-        ),
         Expanded(
           child: Container(
             height: 1,
