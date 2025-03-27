@@ -1,15 +1,13 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
+import 'package:in_classe/database/seeders/analisi_seeder.dart';
 import 'package:in_classe/extension_function/context_extensions.dart';
 import 'package:in_classe/extension_function/string_extensions.dart';
-import 'package:in_classe/view/partial/bi_color_text.dart';
 import 'package:tuple/tuple.dart';
 
 import '../constant/measures.dart';
 import '../widget/background.dart';
 import 'constant/fonts.dart';
-import 'constant/palette.dart';
+import 'model/analisi.dart';
 import 'model/corso.dart';
 
 class _Screen {
@@ -26,12 +24,21 @@ class LezionePage extends StatefulWidget {
   State<LezionePage> createState() => _LezionePageState();
 }
 
-class _LezionePageState extends State<LezionePage> with TickerProviderStateMixin {
+class _LezionePageState extends State<LezionePage> {
+  Tuple2<Corso, int>? args;
+
+  Corso? corso;
+  List<Analisi>? analisiCorso;
+  int? lezione;
+
   @override
   Widget build(BuildContext context) {
-    final args = (ModalRoute.of(context)!.settings.arguments) as Tuple2<Corso, int>?;
-    final corso = args!.item1;
-    final lezione = args!.item2;
+    if (args == null) {
+      args = (ModalRoute.of(context)!.settings.arguments) as Tuple2<Corso, int>?;
+      corso = args!.item1;
+      analisiCorso = AnalisiSeeder().seeds.where((e) => e.corso == corso!.uid).toList();
+      lezione = args!.item2;
+    }
     return Scaffold(
       body: Stack(
         fit: StackFit.expand,
@@ -46,31 +53,42 @@ class _LezionePageState extends State<LezionePage> with TickerProviderStateMixin
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: Measures.hPadding),
                     child: Row(children: [
-                      Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.black.withAlpha(64),
-                            border: Border.all(color: Colors.white, width: 2)),
-                        child: Padding(
-                          padding: EdgeInsets.all(10),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              'chevron_left'.toIcon(),
-                              SizedBox(width: Measures.hMarginMed),
-                              Text('Indietro', style: Fonts.regular()),
-                            ],
+                      GestureDetector(
+                        onTap: () {
+                          context.pop();
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.black.withAlpha(64),
+                              border: Border.all(color: Colors.white, width: 2)),
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(
+                                vertical: Measures.vMarginMoreThin, horizontal: Measures.hMarginSmall),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                'chevron_left'.toIcon(height: 20),
+                                SizedBox(width: Measures.hMarginSmall),
+                                Text('Indietro', style: Fonts.regular()),
+                              ],
+                            ),
                           ),
                         ),
                       ),
+                      SizedBox(width: Measures.hMarginBig),
                       Flexible(
-                        fit: FlexFit.tight,
-                        child: BiColorText(
-                            secondText: '${corso.nome!}',
-                            firstText: '',
-                            secondColor: [Palette.thirdTitle, Palette.firstTitle]),
-                      ),
+                          fit: FlexFit.tight,
+                          child: Text(
+                            corso!.nome!,
+                            style: Fonts.bold(),
+                          )
+                          // BiColorText(
+                          //     secondText: '${corso!.nome!}',
+                          //     firstText: '',
+                          //     secondColor: [Palette.thirdTitle, Palette.firstTitle]),
+                          ),
                     ]),
                   ),
                   SizedBox(height: Measures.vMarginMed),
@@ -78,37 +96,35 @@ class _LezionePageState extends State<LezionePage> with TickerProviderStateMixin
                     scrollDirection: Axis.horizontal,
                     child: Row(
                       children: [
-                        ...(corso.lezioni! + [3, 4, 5, 6, 11, 13]).map((l) => Padding(
-                              padding: const EdgeInsets.only(right: Measures.hMarginMed),
-                              child: GestureDetector(
-                                onTap: () {
-                                  context.goto('/lezione', args: Tuple2(corso, l));
-                                },
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      color: Colors.black.withAlpha(64),
-                                      border: l == lezione
-                                          ? Border.all(color: Colors.white, width: 2)
-                                          : null),
-                                  child: Padding(
-                                    padding: EdgeInsets.all(10),
-                                    child: Column(
-                                      children: [
-                                        // Text(lezione.toString(), style: Fonts.bold()),
-                                        Text(
-                                            [
-                                              "LUN",
-                                              "MAR",
-                                              "MER",
-                                              "GIO",
-                                              "VER",
-                                              "SAB",
-                                              "DOM"
-                                            ][Random().nextInt(5)],
-                                            style: Fonts.bold()),
-                                        Text("$lezione OTT", style: Fonts.regular()),
-                                      ],
+                        SizedBox(width: Measures.hPadding),
+                        ...corso!.lezioni!.map((l) => Opacity(
+                              opacity: analisiCorso!.any((e) => e.lezione == l) ? 1 : 0.5,
+                              child: Padding(
+                                padding: const EdgeInsets.only(right: Measures.hMarginMed),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    if (analisiCorso!.any((e) => e.lezione == l))
+                                      setState(() {
+                                        lezione = l;
+                                      });
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: Colors.black.withAlpha(64),
+                                        border: l == lezione
+                                            ? Border.all(color: Colors.white, width: 2)
+                                            : Border.all(color: Colors.transparent, width: 2)),
+                                    child: Padding(
+                                      padding: EdgeInsets.all(10),
+                                      child: Column(
+                                        children: [
+                                          // Text(lezione.toString(), style: Fonts.bold()),
+                                          Text(["LUN", "MAR", "MER", "GIO", "VER", "SAB", "DOM"][l % 5],
+                                              style: Fonts.bold()),
+                                          Text("$l OTT", style: Fonts.regular()),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),

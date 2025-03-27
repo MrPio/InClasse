@@ -26,6 +26,7 @@ class MyApp extends StatelessWidget {
         .copyWith(systemNavigationBarColor: Colors.transparent, statusBarColor: Colors.transparent));
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
     return CupertinoApp(
+      debugShowCheckedModeBanner: false,
       title: 'Tra Le Righe',
       onGenerateRoute: (settings) {
         final Map<String, Tuple2<Offset, Widget>> transitions = {
