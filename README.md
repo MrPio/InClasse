@@ -4,6 +4,8 @@ Hack-AI-Thon 2025 UnivPM project
 
 <img src="https://github.com/user-attachments/assets/f825a1de-c96c-46ad-899c-8cfd4e48c894" width="280rem"></img>
 
+### 🏆 Award for marketability and completeness of application prize!
+
 ### ⬇️ Slideshow [`[.PPTX]`](media/TraLeRighe_HackAIthon.pptx)
 <p align="center">
   <img src="https://github.com/user-attachments/assets/ff24c6f8-e48f-424d-bdef-62e48d1aae4e" height="360rem"></img>
