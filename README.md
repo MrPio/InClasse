@@ -2,6 +2,8 @@
 
 Hack-AI-Thon 2025 UnivPM project
 
+TraLeRighe is a system that helps students who have missed some lessons to keep up with the class by providing an AI tutor contextualised to the teacher's lessons.
+
 <img src="https://github.com/user-attachments/assets/f825a1de-c96c-46ad-899c-8cfd4e48c894" width="280rem"></img>
 
 ### 🏆 Award for marketability and completeness of application prize!
