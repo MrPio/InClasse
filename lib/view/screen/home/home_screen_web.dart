@@ -91,103 +91,101 @@ class _HomeScreenState extends State<HomeScreenWeb> {
                         selected = corso.uid;
                       });
                     },
-                    child: Center(
-                      child: Container(
-                        constraints: BoxConstraints(maxWidth: 800),
-                        padding: EdgeInsets.symmetric(horizontal: 8, vertical: 6),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.black.withAlpha(64),
-                          border: Border.all(color: Colors.white, width: 2),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(mainAxisSize: MainAxisSize.min, children: [
-                              Flexible(
-                                fit: FlexFit.tight,
-                                child: Text(corso.nome!,
-                                    style: Fonts.bold(), overflow: TextOverflow.ellipsis),
-                              ),
-                              'chevron_right'
-                                  .toIcon(rotation: corso.uid == selected ? -3.14 / 2 : 3.14 / 2)
-                            ]),
-                            SizedBox(height: Measures.vMarginThin),
-                            Text("${corso.docente!} (${corso.anno})",
-                                style: Fonts.regular(fontStyle: FontStyle.italic),
-                                overflow: TextOverflow.ellipsis),
-                            SizedBox(height: Measures.vMarginThin),
-                            Text(corso.descrizione!, style: Fonts.light(), maxLines: 1),
-                            if (corso.uid == selected) ...[
-                              SizedBox(height: Measures.vMarginSmall),
-                              Line(text: ''),
-                              SizedBox(height: Measures.vMarginSmall),
-                              SingleChildScrollView(
-                                scrollDirection: Axis.horizontal,
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    ...(corso.lezioni!).map((lezione) => Opacity(
-                                      opacity: analisiCorso.any((e) => e.lezione == lezione) ? 1 : 0.5,
-                                      child: Padding(
-                                        padding: const EdgeInsets.only(right: Measures.hMarginMed),
-                                        child: GestureDetector(
-                                          onTap: () {
-                                            if (analisiCorso.any((e) => e.lezione == lezione)) {
-                                              context.goto('/lezione', args: Tuple2(corso, lezione));
-                                            }
-                                          },
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.circular(10),
-                                              color: Colors.black.withAlpha(64),
-                                              border: Border.all(color: Colors.white, width: 2),
-                                            ),
-                                            padding: EdgeInsets.all(10),
-                                            child: Column(
-                                              children: [
-                                                Text(
-                                                  ["LUN", "MAR", "MER", "GIO", "VER", "SAB", "DOM"][lezione % 5],
-                                                  style: Fonts.bold(),
-                                                ),
-                                                Text("$lezione OTT", style: Fonts.regular()),
-                                              ],
-                                            ),
+                    child: Container(
+                      constraints: BoxConstraints(maxWidth: 800),
+                      padding: EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.black.withAlpha(64),
+                        border: Border.all(color: Colors.white, width: 2),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(mainAxisSize: MainAxisSize.min, children: [
+                            Flexible(
+                              fit: FlexFit.tight,
+                              child: Text(corso.nome!,
+                                  style: Fonts.bold(), overflow: TextOverflow.ellipsis),
+                            ),
+                            'chevron_right'
+                                .toIcon(rotation: corso.uid == selected ? -3.14 / 2 : 3.14 / 2)
+                          ]),
+                          SizedBox(height: Measures.vMarginThin),
+                          Text("${corso.docente!} (${corso.anno})",
+                              style: Fonts.regular(fontStyle: FontStyle.italic),
+                              overflow: TextOverflow.ellipsis),
+                          SizedBox(height: Measures.vMarginThin),
+                          Text(corso.descrizione!, style: Fonts.light(), maxLines: 1),
+                          if (corso.uid == selected) ...[
+                            SizedBox(height: Measures.vMarginSmall),
+                            Line(text: ''),
+                            SizedBox(height: Measures.vMarginSmall),
+                            SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  ...(corso.lezioni!).map((lezione) => Opacity(
+                                    opacity: analisiCorso.any((e) => e.lezione == lezione) ? 1 : 0.5,
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(right: Measures.hMarginMed),
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          if (analisiCorso.any((e) => e.lezione == lezione)) {
+                                            context.goto('/lezione', args: Tuple2(corso, lezione));
+                                          }
+                                        },
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.circular(10),
+                                            color: Colors.black.withAlpha(64),
+                                            border: Border.all(color: Colors.white, width: 2),
+                                          ),
+                                          padding: EdgeInsets.all(10),
+                                          child: Column(
+                                            children: [
+                                              Text(
+                                                ["LUN", "MAR", "MER", "GIO", "VER", "SAB", "DOM"][lezione % 5],
+                                                style: Fonts.bold(),
+                                              ),
+                                              Text("$lezione OTT", style: Fonts.regular()),
+                                            ],
                                           ),
                                         ),
                                       ),
-                                    )),
+                                    ),
+                                  )),
 
-                                    // 👉 Pulsante + (aggiunta lezione)
-                                    GestureDetector(
-                                      onTap: () {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(builder: (_) => const AddLesson()),
-                                        );
-                                      },
-                                      child: Container(
-                                        margin: const EdgeInsets.only(left: Measures.hMarginMed),
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: Colors.black.withAlpha(64), // stesso colore sfondo dei cubi data
-                                          border: Border.all(color: Colors.white, width: 2),
-                                        ),
-                                        padding: const EdgeInsets.all(10),
-                                        child: SvgPicture.asset(
-                                          'assets/icons/plus.svg',
-                                          height: 24,
-                                          width: 24,
-                                          color: Colors.white,
-                                        ),
+                                  // 👉 Pulsante + (aggiunta lezione)
+                                  GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(builder: (_) => const AddLesson()),
+                                      );
+                                    },
+                                    child: Container(
+                                      margin: const EdgeInsets.only(left: Measures.hMarginMed),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: Colors.black.withAlpha(64), // stesso colore sfondo dei cubi data
+                                        border: Border.all(color: Colors.white, width: 2),
                                       ),
-                                    )
-                                  ],
-                                ),
+                                      padding: const EdgeInsets.all(10),
+                                      child: SvgPicture.asset(
+                                        'assets/icons/plus.svg',
+                                        height: 24,
+                                        width: 24,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  )
+                                ],
                               ),
-                            ]
-                          ],
-                        ),
+                            ),
+                          ]
+                        ],
                       ),
                     ),
                   ),
