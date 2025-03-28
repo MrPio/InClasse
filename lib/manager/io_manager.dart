@@ -8,6 +8,8 @@ import 'package:in_classe/manager/database_manager.dart';
 
 import '../constant/palette.dart';
 import '../interfaces/json_serializable.dart';
+import 'package:http/http.dart' as http;
+
 
 enum CollectionType {
   object(''),
@@ -95,9 +97,9 @@ class IOManager {
   /// Check that the device is connected to the Internet
   Future<bool> hasInternetConnection(BuildContext context) async {
     try {
-      final result = await InternetAddress.lookup('www.google.com');
-      if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) return true;
-    } on SocketException catch (_) {}
+      final response = await http.get(Uri.parse('https://clients3.google.com/generate_204'));
+      if (response.statusCode == 204) return true;
+    } catch (_) {}
     context.snackbar('Connessione internet assente!', backgroundColor: Palette.error);
     return false;
   }

@@ -1,11 +1,15 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:in_classe/quiz_page.dart';
 import 'package:in_classe/view/first_page.dart';
+import 'package:in_classe/view/first_page_web.dart';
 import 'package:in_classe/view/home_page.dart';
+import 'package:in_classe/view/home_page_web.dart';
 import 'package:in_classe/view/signin_page.dart';
+import 'package:in_classe/view/signin_page_web.dart';
 import 'package:in_classe/view/signup_page.dart';
 import 'package:tuple/tuple.dart';
 
@@ -50,10 +54,10 @@ class MyApp extends StatelessWidget {
         return null;
       },
       routes: <String, WidgetBuilder>{
-        '/': (context) => const FirstPage(),
-        '/home': (context) => const HomePage(),
+        '/': (context) => kIsWeb ? const FirstPageWeb() : const FirstPage(),
+        '/home': (context) => kIsWeb ? const HomePageWeb() : const HomePage(),
         '/lezione': (context) => const LezionePage(),
-        '/login': (context) => const SignInPage(),
+        '/login': (context) => kIsWeb ? const SignInPageWeb() : const FirstPage(),
         '/signup': (context) => const SignUpPage(),
         '/quiz': (context) => const QuizPage(),
       },
