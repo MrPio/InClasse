@@ -12,6 +12,7 @@ import 'package:in_classe/view/home_page_web.dart';
 import 'package:in_classe/view/signin_page.dart';
 import 'package:in_classe/view/signin_page_web.dart';
 import 'package:in_classe/view/signup_page.dart';
+import 'package:in_classe/view/add_lesson.dart';
 import 'package:tuple/tuple.dart';
 
 import 'firebase_options.dart';
@@ -62,6 +63,7 @@ class MyApp extends StatelessWidget {
         '/signup': (context) => const SignUpPage(),
         '/quiz': (context) => const QuizPage(),
         '/chat': (context) => const ChatPage(),
+        '/add': (context) => const AddLesson(),
       },
     );
   }

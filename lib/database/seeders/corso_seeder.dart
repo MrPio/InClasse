@@ -13,6 +13,22 @@ class CorsoSeeder extends Seeder<Corso> {
             uid: "is",
             lezioni: [1, 2, 3, 4, 5, 6, 7, 8]),
         Corso(
+            nome: 'Project Management',
+            docente: 'Domenico URSINO',
+            anno: '2024-2025',
+            descrizione:
+            "Il corso di Project Management fornisce le competenze fondamentali per pianificare, gestire e controllare progetti in contesti aziendali complessi. Vengono affrontati temi come la definizione degli obiettivi, la gestione dei tempi, dei costi, delle risorse e dei rischi. Il corso include l’utilizzo di strumenti e metodologie standard (come il metodo Gantt e il Critical Path). È previsto l’approccio sia teorico che pratico, con casi studio reali.",
+            uid: "pm",
+            lezioni: [1, 2, 3, 4, 5, 6]),
+        Corso(
+            nome: 'Data science',
+            docente: 'Domenico URSINO',
+            anno: '2024-2025',
+            descrizione:
+            "Il corso di Data Science introduce agli strumenti e alle tecniche per l’analisi e l’interpretazione dei dati. Copre argomenti come statistica, machine learning, data visualization e gestione dei dataset complessi. Gli studenti imparano a estrarre conoscenza dai dati utilizzando linguaggi come Python e librerie specializzate. Il corso unisce teoria e applicazioni pratiche in contesti reali.",
+            uid: "ds",
+            lezioni: [1, 2, 3, 4, 5]),
+        Corso(
             nome: 'Manutenzione Preventiva per la Robotica e l\'Automazione Intelligente',
             docente: 'Alessandro FREDDI',
             anno: '2024-2025',
