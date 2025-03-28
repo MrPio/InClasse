@@ -81,7 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Row(mainAxisSize: MainAxisSize.min, children: [
-                              if (['is', 'ldp'].contains(corso.uid)) ...[
+                              if (['is', 'mp'].contains(corso.uid)) ...[
                                 Container(
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(99), color: Colors.white),

@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:in_classe/chat_page.dart';
 import 'package:in_classe/quiz_page.dart';
 import 'package:in_classe/view/first_page.dart';
 import 'package:in_classe/view/home_page.dart';
@@ -56,6 +57,7 @@ class MyApp extends StatelessWidget {
         '/login': (context) => const SignInPage(),
         '/signup': (context) => const SignUpPage(),
         '/quiz': (context) => const QuizPage(),
+        '/chat': (context) => const ChatPage(),
       },
     );
   }

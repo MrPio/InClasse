@@ -210,21 +210,27 @@ class _LezionePageState extends State<LezionePage> {
                   SizedBox(height: Measures.vMarginSmall),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: Measures.hPadding),
-                    child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.black.withAlpha(64),
-                          border: Border.all(color: Colors.white, width: 2)),
-                      child: Padding(
-                        padding: EdgeInsets.all(10),
-                        child: Row(
-                          children: [
-                            SizedBox(width: Measures.hMarginSmall),
-                            'chat'.toIcon(height: 36),
-                            SizedBox(width: Measures.hMarginMed + Measures.hMarginSmall),
-                            Expanded(child: Text("Chatta con il tutor AI", style: Fonts.bold(size: 18))),
-                            'chevron_right'.toIcon(),
-                          ],
+                    child: GestureDetector(
+                      onTap: () {
+                        context.goto('/chat', args: analisi);
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.black.withAlpha(64),
+                            border: Border.all(color: Colors.white, width: 2)),
+                        child: Padding(
+                          padding: EdgeInsets.all(10),
+                          child: Row(
+                            children: [
+                              SizedBox(width: Measures.hMarginSmall),
+                              'chat'.toIcon(height: 36),
+                              SizedBox(width: Measures.hMarginMed + Measures.hMarginSmall),
+                              Expanded(
+                                  child: Text("Chatta con il tutor AI", style: Fonts.bold(size: 18))),
+                              'chevron_right'.toIcon(),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -247,6 +253,30 @@ class _LezionePageState extends State<LezionePage> {
                             'link'.toIcon(height: 36),
                             SizedBox(width: Measures.hMarginMed + Measures.hMarginSmall),
                             Expanded(child: Text("Collegamenti", style: Fonts.bold(size: 18))),
+                            'chevron_right'.toIcon(),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+
+// Traduzione
+                  SizedBox(height: Measures.vMarginSmall),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: Measures.hPadding),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.black.withAlpha(64),
+                          border: Border.all(color: Colors.white, width: 2)),
+                      child: Padding(
+                        padding: EdgeInsets.all(10),
+                        child: Row(
+                          children: [
+                            SizedBox(width: Measures.hMarginSmall),
+                            'translation'.toIcon(height: 36),
+                            SizedBox(width: Measures.hMarginMed + Measures.hMarginSmall),
+                            Expanded(child: Text("Traduci in un'altra lingua", style: Fonts.bold(size: 18))),
                             'chevron_right'.toIcon(),
                           ],
                         ),
@@ -278,54 +308,6 @@ class _LezionePageState extends State<LezionePage> {
                     ),
                   ),
 
-/*
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: Measures.hPadding),
-                    child: Row(
-                      children: [
-                        'quiz'.toIcon(height: 36),
-                        SizedBox(width: Measures.hMarginMed),
-                        Flexible(
-                            child: Text('Test di autovalutazione',
-                                style: Fonts.black(size: 20), overflow: TextOverflow.ellipsis)),
-                      ],
-                    ),
-                  ),
-
-                  SizedBox(height: Measures.vMarginSmall),
-                  ...analisi.test!.map((domanda) => GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            if (domandaSelected == domanda.item1)
-                              domandaSelected = null;
-                            else
-                              domandaSelected = domanda.item1;
-                          });
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: Measures.hPadding),
-                          child: Column(
-                            children: [
-                              Row(
-                                children: [
-                                  Flexible(child: Text(domanda.item1, style: Fonts.bold(),maxLines: 9,overflow: TextOverflow.ellipsis,)),
-                                  SizedBox(width: Measures.hMarginMed),
-                                  'chevron_right'.toIcon(
-                                      rotation: domanda.item1 == domandaSelected ? -3.14 / 2 : 3.14 / 2)
-                                ],
-                              ),
-                              if (domanda.item1 == domandaSelected) ...[
-                                SizedBox(height: Measures.vMarginThin),
-                                Text(domanda.item2, style: Fonts.regular())
-                              ],
-                              SizedBox(height: Measures.vMarginSmall),
-                              Line(text: ''),
-                              SizedBox(height: Measures.vMarginSmall),
-                            ],
-                          ),
-                        ),
-                      )),
-*/
                 ],
               ),
             ),
