@@ -13,6 +13,14 @@ class CorsoSeeder extends Seeder<Corso> {
             uid: "is",
             lezioni: [1, 2, 3, 4, 5, 6, 7, 8]),
         Corso(
+            nome: 'Manutenzione Preventiva per la Robotica e l\'Automazione Intelligente',
+            docente: 'Alessandro FREDDI',
+            anno: '2024-2025',
+            descrizione:
+                "L'insegnamento si pone l'obiettivo di fornire conoscenze e capacità di comprensione su sistemi di diagnosi e prognosi per la supervisione e la manutenzione di sistemi robotici e automatici.",
+            uid: "mp",
+            lezioni: [1, 2, 3, 4, 5, 6, 7, 8]),
+        Corso(
             nome: 'Linguaggi di Programmazione',
             docente: 'Alessandro CUCCHIARELLI',
             anno: '2024-2025',
@@ -28,13 +36,5 @@ class CorsoSeeder extends Seeder<Corso> {
                 "Il corso svilupperà la capacità di svolgere analisi progettuali che richiedono un approccio multidisciplinare considerando l’elevata trasversalità del corso (full-stack approach). Grazie allo svolgimento di un lavoro di gruppo gli studenti potranno incrementare le loro abilità comunicative inserendosi in un team e presentando il risultato del lavoro in modo strutturato. Questo consente l’approfondimento di un tema specifico con conseguente sviluppo di capacità di analisi e sintesi di un problema anche complesso trattato nell’ambito del corso.",
             uid: "pa",
             lezioni: [1, 2, 3, 4]),
-        Corso(
-            nome: 'Manutenzione Preventiva per la Robotica e l\'Automazione Intelligente',
-            docente: 'Alessandro FREDDI',
-            anno: '2024-2025',
-            descrizione:
-                "L'insegnamento si pone l'obiettivo di fornire conoscenze e capacità di comprensione su sistemi di diagnosi e prognosi per la supervisione e la manutenzione di sistemi robotici e automatici.",
-            uid: "mp",
-            lezioni: [1, 2, 3, 4, 5, 6, 7, 8]),
       ];
 }

@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:in_classe/chat_page.dart';
 import 'package:in_classe/quiz_page.dart';
 import 'package:in_classe/view/first_page.dart';
 import 'package:in_classe/view/first_page_web.dart';
@@ -60,6 +61,7 @@ class MyApp extends StatelessWidget {
         '/login': (context) => kIsWeb ? const SignInPageWeb() : const FirstPage(),
         '/signup': (context) => const SignUpPage(),
         '/quiz': (context) => const QuizPage(),
+        '/chat': (context) => const ChatPage(),
       },
     );
   }
