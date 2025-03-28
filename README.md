@@ -1,16 +1,11 @@
-# in_classe
+# TraLeRighe
 
 Hack-AI-Thon 2025 UnivPM project
 
-## Getting Started
+<img src="https://github.com/user-attachments/assets/f825a1de-c96c-46ad-899c-8cfd4e48c894" width="280rem"></img>
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### ⬇️ Slideshow [`[.PPTX]`](media/TraLeRighe_HackAIthon.pptx)
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/ff24c6f8-e48f-424d-bdef-62e48d1aae4e" height="360rem"></img>
+  <img src="https://github.com/user-attachments/assets/21bbbc58-60d9-401c-9b69-85b169c18e51" height="520rem"></img>
+</p>
