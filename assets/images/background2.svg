@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="760"
+   height="853"
+   viewBox="0 0 393 853"
+   fill="none"
+   version="1.1"
+   id="svg5"
+   sodipodi:docname="background2.svg"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview5"
+     pagecolor="#505050"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="1.3329426"
+     inkscape:cx="380.36148"
+     inkscape:cy="426.5"
+     inkscape:window-width="3440"
+     inkscape:window-height="1351"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g5" />
+  <g
+     opacity="0.5"
+     filter="url(#filter0_f_327_663)"
+     id="g5">
+    <path
+       d="m 117.65962,797.66628 c 0,59.66478 -89.336722,108.03102 -199.537304,108.02842 -110.200586,-10e-4 -199.535266,-48.37142 -199.533986,-108.03489 0.001,-59.66478 89.33685,-108.03102 199.537431,-108.02973 110.200965,10e-4 199.535129,48.37142 199.533859,108.0362 z"
+       fill="#00ffff"
+       id="path1"
+       style="stroke-width:1.2855" />
+    <ellipse
+       cx="395.29385"
+       cy="909.11682"
+       rx="296.38974"
+       ry="274.66885"
+       fill="#0044ff"
+       id="ellipse1"
+       style="stroke-width:1.03291" />
+    <ellipse
+       cx="469.28952"
+       cy="78.964943"
+       rx="187.532"
+       ry="139.881"
+       transform="matrix(1,3.26025e-5,-8.23138e-6,1,0,0)"
+       fill="#00ffff"
+       id="ellipse2" />
+    <ellipse
+       cx="278.014"
+       cy="170.437"
+       rx="278.014"
+       ry="170.437"
+       transform="matrix(1 2.74231e-05 -9.78606e-06 1 -253.529 -39.5712)"
+       fill="#2200FF"
+       id="ellipse3" />
+    <ellipse
+       cx="-452.52142"
+       cy="426.5137"
+       rx="307.27258"
+       ry="207.94798"
+       transform="matrix(-1,3.0272638e-5,8.8649063e-6,1,0,0)"
+       fill="#2200ff"
+       id="ellipse4"
+       style="stroke-width:1.16125" />
+    <ellipse
+       cx="38.972"
+       cy="519.19202"
+       rx="278.01401"
+       ry="170.437"
+       transform="matrix(1,2.74231e-5,-9.78606e-6,1,0,0)"
+       fill="#2200ff"
+       id="ellipse5" />
+  </g>
+  <defs
+     id="defs5">
+    <filter
+       id="filter0_f_327_663"
+       x="-403.531"
+       y="-189.564"
+       width="1274.64"
+       height="1572.11"
+       filterUnits="userSpaceOnUse"
+       color-interpolation-filters="sRGB">
+      <feFlood
+         flood-opacity="0"
+         result="BackgroundImageFix"
+         id="feFlood5" />
+      <feBlend
+         mode="normal"
+         in="SourceGraphic"
+         in2="BackgroundImageFix"
+         result="shape"
+         id="feBlend5" />
+      <feGaussianBlur
+         stdDeviation="75"
+         result="effect1_foregroundBlur_327_663"
+         id="feGaussianBlur5" />
+    </filter>
+  </defs>
+</svg>

@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:in_classe/quiz_page.dart';
 import 'package:in_classe/view/first_page.dart';
 import 'package:in_classe/view/home_page.dart';
 import 'package:in_classe/view/signin_page.dart';
@@ -54,6 +55,7 @@ class MyApp extends StatelessWidget {
         '/lezione': (context) => const LezionePage(),
         '/login': (context) => const SignInPage(),
         '/signup': (context) => const SignUpPage(),
+        '/quiz': (context) => const QuizPage(),
       },
     );
   }
